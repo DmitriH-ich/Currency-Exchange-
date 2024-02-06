@@ -12,4 +12,4 @@
         result = amount * USD_TO_EUR_RATE;
       } else if ("USD".equals(fromCurrency) && "GBP".equals(toCurrency)) {
         result = amount * USD_TO_GBP_RATE;
-}
+      }
