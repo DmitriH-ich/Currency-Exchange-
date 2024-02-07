@@ -1,3 +1,4 @@
+
 public class ExchangeRequest {
   private double amount;
   private String fromCurrency;
