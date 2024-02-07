@@ -1,32 +1,61 @@
+
+import java.util.Scanner;
+
 public class Main {
 
+  public static void ChooseOption() {
+    System.out.println("Выберите опцию меню: ");
+    System.out.println("1. Обменять валюту");
+    System.out.println("2. Просмотреть историю обмена валюты");
+    System.out.println("3. Выход из меню");
+  }
 
-    public static void main(String[] args) {
-        UserInterface userInterface = new UserInterface();
-        CurrencyExchange currencyExchange = new CurrencyExchange();
-        ExchangeHistory exchangeHistory = new ExchangeHistory();
+  public static void main(String[] args) {
+    UserInterface userInterface = new UserInterface();
+    CurrencyExchange currencyExchange = new CurrencyExchange();
+    ExchangeHistory exchangeHistory = new ExchangeHistory();
 
-        while (true) {
-            ExchangeRequest request = userInterface.getUserInput();
-            double result = currencyExchange.performExchange(request);
-            userInterface.displayResult(result);
+    while (true) {
+      Runnable method = Main::ChooseOption;
+      method.run();
+      Scanner scanner = new Scanner(System.in);
+      int choice = scanner.nextInt();
 
-            // Сохранение обмена в истории
-            ExchangeRecord exchangeRecord = new ExchangeRecord(request.getAmount(),
-                    request.getFromCurrency(), request.getToCurrency());
-            exchangeHistory.addRecord(exchangeRecord);
+      switch (choice) {
+        case 1:
 
-            System.out.println("Хотите продолжить (y/n)?");
-            String continueOption = userInterface.getScanner().next();
+          ExchangeRequest request = userInterface.getUserInput();
+          double result = currencyExchange.performExchange(request);
+          userInterface.displayResult(result);
 
-            if (!"y".equalsIgnoreCase(continueOption)) {
-                break;
-            }
-        }
 
-        // Вывод истории обменов
-        System.out.println("\nИстория обменов:");
-        exchangeHistory.displayHistory();
+          ExchangeRecord exchangeRecord = new ExchangeRecord(request.getAmount(),
+              request.getFromCurrency(), request.getToCurrency());
+          exchangeHistory.addRecord(exchangeRecord);
+          System.out.println("Хотите продолжить (да/нет)?");
+
+          String continueOption = userInterface.getScanner().next();
+
+          if (!"да".equalsIgnoreCase(continueOption)) {
+            System.out.println("Выход из меню.");
+            System.exit(0);
+          }
+          break;
+
+        case 2:
+
+          System.out.println("История обменов:");
+          exchangeHistory.displayHistory();
+          break;
+
+        case 3:
+
+          System.out.println("Всего доброго!");
+          System.exit(0);
+          break;
+        default:
+          System.out.println("Некорректный выбор. Пожалуйста, выберите предлагаемую опцию.");
+      }
     }
+  }
 }
-
