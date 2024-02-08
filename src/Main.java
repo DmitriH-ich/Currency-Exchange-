@@ -17,6 +17,7 @@ public class Main {
     UserInterface userInterface = new UserInterface();
     CurrencyExchange currencyExchange = new CurrencyExchange("exchange_rates.txt");
     ExchangeHistory exchangeHistory = new ExchangeHistory();
+    exchangeHistory.createHistoryFile("exchange_history.txt");
 
     while (true) {
       Runnable method = Main::ChooseOption;
@@ -53,6 +54,7 @@ public class Main {
 
         case 3:
           //Код для выхода из меню
+          exchangeHistory.saveHistoryOnExit("exchange_history.txt");
           System.out.println("Всего доброго!");
           System.exit(0);
           break;

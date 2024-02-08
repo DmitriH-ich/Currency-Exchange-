@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 public class CurrencyExchange {
 
+  private static final double USD_TO_EUR_RATE = 0.93;
+  private static final double USD_TO_GBP_RATE = 0.79;
+  private static final double EUR_TO_USD_RATE = 1.08;
+  private static final double EUR_TO_GBP_RATE = 0.86;
+  private static final double GBP_TO_USD_RATE = 1.26;
+  private static final double GBP_TO_EUR_RATE = 1.17;
   private Map<String, Double> exchangeRates;
 
   public CurrencyExchange(String filename) throws IOException {
@@ -56,6 +62,7 @@ public class CurrencyExchange {
       System.out.println("Ошибка: Файл с курсами обмена валюты не найден.");
     }
   }
+
 
   public double performExchange(ExchangeRequest request) {
     double amount = request.getAmount();

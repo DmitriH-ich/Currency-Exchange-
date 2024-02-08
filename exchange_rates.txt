@@ -4,3 +4,15 @@ EUR to USD: 1.08
 EUR to GBP: 0.86
 GBP to USD: 1.26
 GBP to EUR: 1.17
+USD to EUR: 0.93
+USD to GBP: 0.79
+EUR to USD: 1.08
+EUR to GBP: 0.86
+GBP to USD: 1.26
+GBP to EUR: 1.17
+USD to EUR: 0.93
+USD to GBP: 0.79
+EUR to USD: 1.08
+EUR to GBP: 0.86
+GBP to USD: 1.26
+GBP to EUR: 1.17
