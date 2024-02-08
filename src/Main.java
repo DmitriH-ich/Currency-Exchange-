@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 
 import java.util.Scanner;
 
@@ -11,7 +12,8 @@ public class Main {
     System.out.println("3. Выход из меню");
   }
 
-  public static void main(String[] args)  {
+
+  public static void main(String[] args) throws IOException {
     UserInterface userInterface = new UserInterface();
     CurrencyExchange currencyExchange = new CurrencyExchange("exchange_rates.txt");
     ExchangeHistory exchangeHistory = new ExchangeHistory();
