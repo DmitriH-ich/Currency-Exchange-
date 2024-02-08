@@ -12,7 +12,7 @@ public class Main {
 
   public static void main(String[] args) {
     UserInterface userInterface = new UserInterface();
-    CurrencyExchange currencyExchange = new CurrencyExchange();
+    CurrencyExchange currencyExchange = new CurrencyExchange("exchange_rates.txt");
     ExchangeHistory exchangeHistory = new ExchangeHistory();
 
     while (true) {
