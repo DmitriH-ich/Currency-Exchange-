@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class CurrencyExchange {
 
+
     private Map<String, Double> exchangeRates;
     private ExchangeHistory exchangeHistory;
+
 
     public CurrencyExchange(String filename) throws IOException {
         exchangeRates = new HashMap<>();
@@ -87,5 +89,6 @@ public class CurrencyExchange {
 
     public ExchangeHistory getExchangeHistory() {
         return exchangeHistory;
+
     }
 }

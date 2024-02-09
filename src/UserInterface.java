@@ -52,6 +52,7 @@ public class UserInterface {
    * @throws InputMismatchException - в случае неверного формата валюты.
    */
   private String validateCurrency(String currency) throws InputMismatchException {
+    currency = currency.toUpperCase();
     if (!currency.matches("USD|EUR|GBP")) {
       throw new InputMismatchException("Неверный формат валюты. Выберите валюту из предложенного "
               + "списка конвертируемых валют.");

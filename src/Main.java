@@ -14,6 +14,7 @@ public class Main {
     UserInterface userInterface = new UserInterface();
     CurrencyExchange currencyExchange = new CurrencyExchange("exchange_rates.txt");
 
+
     while (true) {
       Runnable method = Main::ChooseOption;
       method.run();
@@ -34,6 +35,7 @@ public class Main {
           break;
 
         case 3:
+
           System.out.println("Всего доброго!");
           System.exit(0);
           break;
