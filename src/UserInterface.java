@@ -10,9 +10,9 @@ public class UserInterface {
       System.out.println("Введите сумму для обмена:");
       double amount = scanner.nextDouble();
       System.out.println("Введите валюту, которую вы хотите обменять (USD, EUR, GBP):");
-      String fromCurrency = validateCurrency(scanner.next());
+      String fromCurrency = validateCurrency(scanner.next().toUpperCase());
       System.out.println("Введите валюту, которую вы хотите приобрести (EUR, GBP, USD):");
-      String toCurrency = validateCurrency(scanner.next());
+      String toCurrency = validateCurrency(scanner.next().toUpperCase());
       return new ExchangeRequest(amount, fromCurrency, toCurrency);
     } catch (InputMismatchException ex) {
       System.out.println("Ошибка ввода. Пожалуйста, введите корректные данные.");

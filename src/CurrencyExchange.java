@@ -1,9 +1,6 @@
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,15 +8,16 @@ import java.util.Scanner;
 public class CurrencyExchange {
 
     private Map<String, Double> exchangeRates;
+    private ExchangeHistory exchangeHistory;
 
     public CurrencyExchange(String filename) throws IOException {
         exchangeRates = new HashMap<>();
         loadExchangeRates(filename);
+        exchangeHistory = new ExchangeHistory();
     }
 
-    private static File getFile() throws IOException {
+    private File getFile() throws IOException {
         File file = new File("exchange_rates.txt");
-
         boolean newFile = file.createNewFile();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
@@ -40,7 +38,6 @@ public class CurrencyExchange {
     }
 
     private void loadExchangeRates(String filename) throws IOException {
-
         File file = getFile();
 
         try {
@@ -62,11 +59,21 @@ public class CurrencyExchange {
         String fromCurrency = request.getFromCurrency();
         String toCurrency = request.getToCurrency();
         double result = 0;
+
         try {
             String currencyPair = fromCurrency + " to " + toCurrency;
             if (exchangeRates.containsKey(currencyPair)) {
                 double rate = exchangeRates.get(currencyPair);
                 result = amount * rate;
+
+                // Создаем запись об обмене
+                ExchangeRecord exchangeRecord = new ExchangeRecord(
+                        LocalDateTime.now(), // добавляем текущее время
+                        amount,
+                        fromCurrency,
+                        toCurrency);
+                exchangeHistory.addRecord(exchangeRecord);
+
                 System.out.println("Возьмите ваши деньги в сумме: " + result + " " + toCurrency);
             } else {
                 throw new UnsupportedOperationException(
@@ -75,7 +82,11 @@ public class CurrencyExchange {
         } catch (UnsupportedOperationException ex) {
             System.out.println(ex.getMessage());
         }
+
         return result;
     }
-}
 
+    public ExchangeHistory getExchangeHistory() {
+        return exchangeHistory;
+    }
+}
